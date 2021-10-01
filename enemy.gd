@@ -18,7 +18,7 @@ var movement = Vector3()
 var health = 100
 var bubble_res = load("res://bubble_text.tscn")
 var bubble_text
-
+var invincibility = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,13 +52,20 @@ func _physics_process(delta):
 	move_and_slide_with_snap(movement, snap, Vector3.UP)
 	
 func get_hit(dmg):
+	if invincibility:
+		return
 	if !is_instance_valid(bubble_text):
 		bubble_text = bubble_res.instance()
 		add_child(bubble_text)
 	else:
-		bubble_text.full_life()
-#	bubble_text.transform.origin = $txt.transform.origin
+		bubble_text.reset()
 	$anim.play("got_hit")
 	health-=dmg
 	if health<=0:
+#		$anim.play("death")
 		queue_free()
+		return
+	invincibility = true
+	yield(get_tree().create_timer(0.5),"timeout")
+	invincibility = false
+	

@@ -10,16 +10,16 @@ var melee_damage = 5
 var cam_accel = 40
 var mouse_sense = 0.1
 var snap
-
+export var attacking = false
 var direction = Vector3()
 var velocity = Vector3()
 var gravity_vec = Vector3()
 var movement = Vector3()	
-
+var atk_type = { 1:"chop", 2:"slash_r2l", 3:"slash_l2r", 4:"thrust"}
 onready var head = $Head
 onready var camera = $Head/Camera
 onready var reach = $Head/Camera/Reach
-onready var hitbox = $Head/Camera/hitbox
+onready var sword = $Head/Camera/weapon
 onready var anim = $anim
 
 func _ready():
@@ -82,11 +82,17 @@ func _physics_process(delta):
 
 func melee():
 	if Input.is_action_just_pressed("atk1"):
+		var at = 1
+		if Input.is_action_pressed("move_right"):
+			at = 3
+		elif Input.is_action_pressed("move_left"):
+			at = 2
+		elif Input.is_action_pressed("move_forward") or Input.is_action_pressed("move_backward"):
+			at = 4
 		if not anim.is_playing():
-			anim.play("attack_chop")
-			anim.queue("attack_chop_end")
-		if anim.current_animation == "attack_chop":
-			for body in hitbox.get_overlapping_bodies():
+			anim.play("attack_%s" %atk_type[at])
+	if attacking:
+			for body in sword.get_overlapping_bodies():
 				if body.is_in_group("Enemy"):
 					body.get_hit(melee_damage)
 func climb_to( target):
