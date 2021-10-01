@@ -53,10 +53,10 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 8,
 [node name="enemies" type="Node" parent="."]
 
 [node name="enemy" parent="enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8045, 28.6463, 17.8468 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02943, 13.3756, 17.8468 )
 
 [node name="enemy2" parent="enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.20894, 92.1332, -36.5611 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.20894, 20.0859, 0.0198936 )
 
 [node name="enemy3" parent="enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.2135, 216.316, 4.8419 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.18613, 20.3765, 10.5109 )
