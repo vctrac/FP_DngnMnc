@@ -36,19 +36,34 @@ transform = Transform( 1.55, 0, 0, 0, 1, 0, 0, 0, 1, 0.00628471, 1.9, 0 )
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 3, -12 )
 
 [node name="Bouder3" parent="MAP" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 8, -12 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.99807, 8, -11.9582 )
 
 [node name="Climber" parent="MAP/Bouder3" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0.6 )
 
+[node name="Climber2" parent="MAP/Bouder3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90735e-06, 1.9, -19.4 )
+
 [node name="Bouder4" parent="MAP" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 3, -6 )
+transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -10, 2.9646, -5.99076 )
 
 [node name="Bouder6" parent="MAP" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 8, -6 )
+transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -10, 8.00553, -6.00926 )
+
+[node name="Bouder7" parent="MAP" instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -10, 2.9646, 8.21754 )
+
+[node name="Bouder8" parent="MAP" instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -10, 8.00553, 8.19905 )
+
+[node name="Bouder9" parent="MAP" instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -10, 2.9646, 11.2175 )
+
+[node name="Bouder10" parent="MAP" instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -10, 8.00553, 11.199 )
 
 [node name="Bouder5" parent="MAP" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 8, -9 )
+transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -10, 7.99443, -9.00924 )
 
 [node name="enemies" type="Node" parent="."]
 
