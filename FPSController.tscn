@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://FPSController.gd" type="Script" id=1]
 
@@ -11,33 +11,34 @@ height = 3.0
 [sub_resource type="CylinderShape" id=3]
 height = 1.0
 
-[sub_resource type="ProceduralSky" id=4]
-ground_bottom_color = Color( 0.054902, 0.027451, 0.0666667, 1 )
-ground_horizon_color = Color( 0.839216, 0.917647, 0.980392, 1 )
-
-[sub_resource type="Environment" id=5]
-background_mode = 2
-background_sky = SubResource( 4 )
-fog_enabled = true
-fog_color = Color( 0.905882, 0.933333, 0.964706, 1 )
-fog_depth_begin = 5.0
-fog_depth_end = 50.0
-auto_exposure_enabled = true
-
-[sub_resource type="ViewportTexture" id=6]
-viewport_path = NodePath("Head/Camera/Viewport")
-
 [sub_resource type="BoxShape" id=7]
 extents = Vector3( 0.3, 1, 0.3 )
 
 [sub_resource type="CubeMesh" id=8]
 size = Vector3( 0.1, 2, 0.1 )
 
+[sub_resource type="ProceduralSky" id=4]
+sky_top_color = Color( 0.247059, 0.45098, 0.564706, 1 )
+ground_bottom_color = Color( 1, 1, 1, 1 )
+ground_horizon_color = Color( 0.839216, 0.917647, 0.980392, 1 )
+
+[sub_resource type="Environment" id=5]
+background_mode = 2
+background_sky = SubResource( 4 )
+ambient_light_color = Color( 0.768627, 0.847059, 0.878431, 1 )
+fog_enabled = true
+fog_color = Color( 0.764706, 0.839216, 0.909804, 1 )
+fog_depth_end = 50.0
+fog_transmit_enabled = true
+
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("Head/Eyes/Viewport")
+
 [sub_resource type="Animation" id=9]
 resource_name = "attack_chop"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Head/Camera/weapon:rotation_degrees")
+tracks/0/path = NodePath("Head/Eyes/weapon:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -61,7 +62,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Head/Camera/weapon:visible")
+tracks/2/path = NodePath("Head/Eyes/weapon:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -73,7 +74,7 @@ tracks/2/keys = {
 "values": [ true, false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Head/Camera/weapon:translation")
+tracks/3/path = NodePath("Head/Eyes/weapon:translation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -89,7 +90,7 @@ tracks/3/keys = {
 resource_name = "attack_slash_l2r"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Head/Camera/weapon:rotation_degrees")
+tracks/0/path = NodePath("Head/Eyes/weapon:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -101,7 +102,7 @@ tracks/0/keys = {
 "values": [ Vector3( -90, 90, 0 ), Vector3( -90, -90, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Head/Camera/weapon:visible")
+tracks/1/path = NodePath("Head/Eyes/weapon:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -125,7 +126,7 @@ tracks/2/keys = {
 "values": [ true, false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Head/Camera/weapon:translation")
+tracks/3/path = NodePath("Head/Eyes/weapon:translation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -141,7 +142,7 @@ tracks/3/keys = {
 resource_name = "attack_slash_r2l"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Head/Camera/weapon:rotation_degrees")
+tracks/0/path = NodePath("Head/Eyes/weapon:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -153,7 +154,7 @@ tracks/0/keys = {
 "values": [ Vector3( -90, -90, 0 ), Vector3( -90, 90, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Head/Camera/weapon:visible")
+tracks/1/path = NodePath("Head/Eyes/weapon:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -177,7 +178,7 @@ tracks/2/keys = {
 "values": [ true, false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Head/Camera/weapon:translation")
+tracks/3/path = NodePath("Head/Eyes/weapon:translation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -193,7 +194,7 @@ tracks/3/keys = {
 resource_name = "attack_thrust"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Head/Camera/weapon:rotation_degrees")
+tracks/0/path = NodePath("Head/Eyes/weapon:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -205,7 +206,7 @@ tracks/0/keys = {
 "values": [ Vector3( -90, 0, 0 ), Vector3( -90, 0, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Head/Camera/weapon:visible")
+tracks/1/path = NodePath("Head/Eyes/weapon:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -229,7 +230,7 @@ tracks/2/keys = {
 "values": [ true, false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Head/Camera/weapon:translation")
+tracks/3/path = NodePath("Head/Eyes/weapon:translation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -241,7 +242,22 @@ tracks/3/keys = {
 "values": [ Vector3( 0.6, -0.6, 1.3 ), Vector3( 0.6, -0.6, -1.3 ) ]
 }
 
-[node name="FPSController" type="KinematicBody"]
+[sub_resource type="SpatialMaterial" id=13]
+flags_vertex_lighting = true
+flags_do_not_receive_shadows = true
+albedo_color = Color( 0.764706, 0.839216, 0.909804, 1 )
+
+[sub_resource type="SphereMesh" id=14]
+material = SubResource( 13 )
+flip_faces = true
+radius = 50.0
+height = 100.0
+radial_segments = 6
+rings = 3
+
+[node name="Player" type="KinematicBody" groups=[
+"Player",
+]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.224058, 0 )
 script = ExtResource( 1 )
 
@@ -262,51 +278,60 @@ shape = SubResource( 3 )
 [node name="Head" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 
-[node name="Camera" type="Camera" parent="Head"]
-environment = SubResource( 5 )
-current = true
+[node name="Eyes" type="Spatial" parent="Head"]
 
-[node name="Reach" type="RayCast" parent="Head/Camera"]
+[node name="Reach" type="RayCast" parent="Head/Eyes"]
 enabled = true
 cast_to = Vector3( 0, 0, -2.5 )
 collision_mask = 3
 collide_with_areas = true
 
-[node name="Viewport" type="Viewport" parent="Head/Camera"]
+[node name="Viewport" type="Viewport" parent="Head/Eyes"]
 size = Vector2( 100, 100 )
 own_world = true
 transparent_bg = true
 hdr = false
 render_target_v_flip = true
 
-[node name="Label" type="Label" parent="Head/Camera/Viewport"]
+[node name="Label" type="Label" parent="Head/Eyes/Viewport"]
 margin_right = 40.0
 margin_bottom = 14.0
+text = "E: open"
 
-[node name="Sprite3D" type="Sprite3D" parent="Head/Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.255371, -0.586634, -0.77336 )
-cast_shadow = 0
-generate_lightmap = false
-double_sided = false
-texture = SubResource( 6 )
-
-[node name="weapon" type="Area" parent="Head/Camera"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.6, -0.6, -1.3 )
+[node name="weapon" type="Area" parent="Head/Eyes"]
+transform = Transform( 0.984808, -0.0868241, -0.150384, 0, -0.866026, 0.5, -0.173648, -0.492404, -0.852869, 0.6, -0.6, -1.3 )
+visible = false
 input_ray_pickable = false
 monitorable = false
 collision_layer = 4
 
-[node name="CollisionShape" type="CollisionShape" parent="Head/Camera/weapon"]
+[node name="CollisionShape" type="CollisionShape" parent="Head/Eyes/weapon"]
 transform = Transform( 1, 7.10543e-15, 4.23516e-22, -7.10543e-15, 1, -7.10543e-15, 4.23516e-22, 7.10543e-15, 1, -2.38419e-07, 1.58453, 0 )
 shape = SubResource( 7 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Head/Camera/weapon"]
+[node name="MeshInstance" type="MeshInstance" parent="Head/Eyes/weapon"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.58453, 0 )
 mesh = SubResource( 8 )
 material/0 = null
+
+[node name="Camera" type="Camera" parent="Head/Eyes"]
+environment = SubResource( 5 )
+current = true
+
+[node name="Sprite3D" type="Sprite3D" parent="Head/Eyes/Camera"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 1, -0.09, -0.085, -0.1 )
+cast_shadow = 0
+generate_lightmap = false
+double_sided = false
+texture = SubResource( 6 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/attack_chop = SubResource( 9 )
 anims/attack_slash_l2r = SubResource( 10 )
 anims/attack_slash_r2l = SubResource( 11 )
 anims/attack_thrust = SubResource( 12 )
+
+[node name="view_end" type="MeshInstance" parent="."]
+visible = false
+mesh = SubResource( 14 )
+material/0 = null

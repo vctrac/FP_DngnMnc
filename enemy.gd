@@ -15,7 +15,7 @@ var direction = Vector3()
 var velocity = Vector3()
 var gravity_vec = Vector3()
 var movement = Vector3()
-var health = 100
+var health = 5
 var bubble_res = load("res://bubble_text.tscn")
 var bubble_text
 var invincibility = false

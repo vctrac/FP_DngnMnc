@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://FPSController.tscn" type="PackedScene" id=2]
@@ -7,63 +7,63 @@
 [ext_resource path="res://Bouder.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Climber.tscn" type="PackedScene" id=6]
 [ext_resource path="res://enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://fungus.tscn" type="PackedScene" id=8]
 
-[node name="Spatial" type="Spatial"]
+[node name="Main" type="Spatial"]
 
-[node name="FPSController" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.01888, 0 )
-
-[node name="map" parent="." instance=ExtResource( 1 )]
+[node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="Ramp" parent="." instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.9993, 7.85035, -1.3478 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -40.1826, 7.27542, -1.3478 )
 
 [node name="Ramp2" parent="." instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.97252, 1.84761, -19.7331 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -40.0848, 1.15391, -19.7331 )
 
 [node name="Door" parent="." instance=ExtResource( 4 )]
-transform = Transform( -3.14722e-08, 0, -1, 0, 0.82, 0, 0.72, 0, -4.37114e-08, -9, 0.53, -9 )
+transform = Transform( -3.14722e-08, 0, -1, 0, 0.82, 0, 0.72, 0, -4.37114e-08, -24.5754, 0.456038, -9.09419 )
 
 [node name="MAP" type="Node" parent="."]
 
 [node name="Bouder" parent="MAP" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 3, -15 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -40.1123, 2.3063, -15 )
 
 [node name="Climber" parent="MAP/Bouder" instance=ExtResource( 6 )]
 transform = Transform( 1.55, 0, 0, 0, 1, 0, 0, 0, 1, 0.00628471, 1.9, 0 )
 
 [node name="Bouder2" parent="MAP" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 3, -12 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -25.5754, 2.92604, -12.0942 )
 
 [node name="Bouder3" parent="MAP" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.99807, 8, -11.9582 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -40.1103, 7.3063, -11.9582 )
 
 [node name="Climber" parent="MAP/Bouder3" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0.6 )
 
-[node name="Climber2" parent="MAP/Bouder3" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90735e-06, 1.9, -19.4 )
-
 [node name="Bouder4" parent="MAP" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -10, 2.9646, -5.99076 )
+transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -25.5754, 2.89064, -6.08499 )
 
 [node name="Bouder6" parent="MAP" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -10, 8.00553, -6.00926 )
+transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -40.1123, 7.31183, -6.00926 )
 
 [node name="Bouder7" parent="MAP" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -10, 2.9646, 8.21754 )
+transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -24.2496, 0.147847, 8.13722 )
 
 [node name="Bouder8" parent="MAP" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -10, 8.00553, 8.19905 )
+transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -40.1833, 2.92854, 8.19905 )
+
+[node name="Climber2" parent="MAP/Bouder8" instance=ExtResource( 6 )]
+transform = Transform( 1, 3.23472e-10, 5.8975e-13, -3.23472e-10, 0.999993, 0.00370009, 5.96856e-13, -0.00370009, 0.999993, -0.00193024, 1.89726, 0.750236 )
 
 [node name="Bouder9" parent="MAP" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -10, 2.9646, 11.2175 )
+transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -24.2496, 0.147847, 11.1372 )
 
 [node name="Bouder10" parent="MAP" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -10, 8.00553, 11.199 )
+transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -40.1833, 2.92854, 11.199 )
 
 [node name="Bouder5" parent="MAP" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -10, 7.99443, -9.00924 )
+transform = Transform( -1, 0, -8.74228e-08, 3.23472e-10, 0.999993, -0.00370009, 8.74222e-08, -0.00370009, -0.999993, -40.1833, 7.4195, -9.00924 )
+
+[node name="map" parent="MAP" instance=ExtResource( 1 )]
 
 [node name="enemies" type="Node" parent="."]
 
@@ -75,3 +75,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.20894, 20.0859, 0.0198936 )
 
 [node name="enemy3" parent="enemies" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.18613, 20.3765, 10.5109 )
+
+[node name="Fungus" parent="enemies" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08818, -19.0244 )

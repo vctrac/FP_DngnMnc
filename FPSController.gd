@@ -1,5 +1,8 @@
 extends KinematicBody
 
+var Name = "Player"
+var health = 10
+var invincibility = false
 var speed = 7
 const ACCEL_DEFAULT = 7
 const ACCEL_AIR = 1
@@ -12,10 +15,11 @@ var dash = true
 var dash_force = DASH_MAX
 var dash_able = false
 var last_pressed = ''
-var melee_damage = 5
+var melee_damage = 1
 var cam_accel = 40
 var mouse_sense = 0.1
 var snap
+var head_bob = 0
 export var attacking = false
 var direction = Vector3()
 var velocity = Vector3()
@@ -23,14 +27,17 @@ var gravity_vec = Vector3()
 var movement = Vector3()	
 var atk_type = { 1:"chop", 2:"slash_r2l", 3:"slash_l2r", 4:"thrust"}
 onready var head = $Head
-onready var camera = $Head/Camera
-onready var reach = $Head/Camera/Reach
-onready var sword = $Head/Camera/weapon
+onready var eyes = $Head/Eyes
+onready var camera = $Head/Eyes/Camera
+onready var reach = $Head/Eyes/Reach
+onready var sword = $Head/Eyes/weapon
 onready var anim = $anim
 
 func _ready():
 	#hides the cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	sword.visible = false
+	$view_end.visible = true
 
 func _input(event):
 	#get mouse input for camera rotation
@@ -59,7 +66,7 @@ func _input(event):
 			dash_able = false
 
 func _process(delta):
-	set_label("")
+	#set_label(String(Engine.get_frames_per_second()))
 	melee()
 	if reach.is_colliding():
 		var obj = reach.get_collider()
@@ -70,13 +77,13 @@ func _process(delta):
 	
 	#camera physics interpolation to reduce physics jitter on high refresh-rate monitors
 	if Engine.get_frames_per_second() > Engine.iterations_per_second:
-		camera.set_as_toplevel(true)
-		camera.global_transform.origin = camera.global_transform.origin.linear_interpolate(head.global_transform.origin, cam_accel * delta)
-		camera.rotation.y = rotation.y
-		camera.rotation.x = head.rotation.x
+		eyes.set_as_toplevel(true)
+		eyes.global_transform.origin = eyes.global_transform.origin.linear_interpolate(head.global_transform.origin, cam_accel * delta)
+		eyes.rotation.y = rotation.y
+		eyes.rotation.x = head.rotation.x
 	else:
-		camera.set_as_toplevel(false)
-		camera.global_transform = head.global_transform
+		eyes.set_as_toplevel(false)
+		eyes.global_transform = head.global_transform
 	
 func _physics_process(delta):
 	if dash:
@@ -95,8 +102,14 @@ func _physics_process(delta):
 	#jumping and gravity
 	
 	if is_on_floor():
+		#head_bobbing
+		var ml = max(movement.length(),1)
+		head_bob += ml*delta
+		camera.translation.y += sin( head_bob)*ml*0.1*delta
+		
 		snap = -get_floor_normal()
 		gravity_vec = Vector3.ZERO
+		
 		if dash:
 			accel = ACCEL_DASH
 			speed = 40
@@ -120,6 +133,20 @@ func _physics_process(delta):
 	
 	move_and_slide_with_snap(movement, snap, Vector3.UP)
 
+func get_hit(dmg):
+	if invincibility:
+		return
+	#anim.play("got_hit")
+	health-=dmg
+	print(health)
+	if health<=0:
+#		$anim.play("death")
+		queue_free()
+		return
+	invincibility = true
+	yield(get_tree().create_timer(0.5),"timeout")
+	invincibility = false
+
 func melee():
 	if Input.is_action_just_pressed("atk1"):
 		var at = 1
@@ -142,4 +169,7 @@ func climb_to( target):
 
 func set_label(txt):
 	if typeof(txt) == TYPE_STRING:
-		camera.get_node("Viewport/Label").text = txt
+		eyes.get_node("Viewport/Label").text = txt
+
+func get_pos():
+	return transform.origin

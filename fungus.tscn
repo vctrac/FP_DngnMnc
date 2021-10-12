@@ -1,0 +1,137 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://fungus.gd" type="Script" id=1]
+[ext_resource path="res://assets/aerial_grass_rock_diff_1k.jpg" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.6
+height = 2.5
+
+[sub_resource type="CapsuleMesh" id=2]
+radius = 0.566667
+mid_height = 2.5
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.960784, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=4]
+radius = 3.0
+height = 6.0
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+albedo_color = Color( 1, 0.654902, 0, 0.341176 )
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="SphereShape" id=6]
+radius = 3.0
+
+[sub_resource type="Animation" id=8]
+resource_name = "Attack"
+tracks/0/type = "value"
+tracks/0/path = NodePath("MeshInstance:mesh:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.6, 0.7, 0.5, 0.6 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:attacking")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Area:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.2, 0.2, 0.2 ), Vector3( 0.2, 0.2, 0.2 ), Vector3( 1.5, 1.5, 1.5 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Area:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "got_hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("MeshInstance:material/0:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.960784, 0, 0, 1 ), Color( 0.54902, 0.67451, 0.14902, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MeshInstance:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.3, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[node name="Fungus" type="StaticBody" groups=[
+"Enemy",
+]]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )
+visible = false
+input_ray_pickable = false
+monitorable = false
+
+[node name="attack_range" type="MeshInstance" parent="Area"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 6 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/Attack = SubResource( 8 )
+anims/got_hit = SubResource( 7 )
